@@ -46,6 +46,5 @@ This software was created using PyQt4 and Qt4 Designer with the python module nu
 III. Special Thanks
 To Rosetta Code for their repository of Julia Set programs https://rosettacode.org/wiki/Julia_set#Python
 To Wikipedia for their list of Julia sets, detailed explanation, and generally giving me an education where school failed
-And to my girlfriend Marka for keeping me motivated, getting me a Panda planner to get my life together, and reminding me to get back to work!
 
 --MJF
