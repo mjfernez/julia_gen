@@ -44,6 +44,7 @@ Before anything, if you have any problems make sure that the program the ui file
 This software was created using PyQt4 and Qt4 Designer with the python module numpy. This project is open-source and available at https://github.com/mjfernez/julia_gen under a GNU GPL License. Please direct comments and complaints here. Currently I am working to write a full introduction to fractals using this tool, but I need to make sure the details are right and I credit everyone correctly so bear with me! I am also considering adding functionality for more complex polynomials like (z^2+z-1) or (1-z^3)/(1-z^4), though the formatting will require me to redraft this program. I may release a separate tool for this since this program is really aimed for people without a knowledge of fractals, but if you have any clever ideas contact me.
 
 III. Special Thanks
+
 The graphical interface for this program of course wouldn't be possible without Qt software particularly PyQt5, which all of the code in this package depends on. Please find them at https://www.qt.io/ and https://www.riverbankcomputing.com/software/pyqt/intro, respectively
 To Rosetta Code for their repository of Julia Set programs https://rosettacode.org/wiki/Julia_set#Python
 To Wikipedia for their list of Julia sets, detailed explanation, and generally giving me an education where school failed
