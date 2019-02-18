@@ -46,7 +46,9 @@ This software was created using PyQt4 and Qt4 Designer with the python module nu
 III. Special Thanks
 
 The graphical interface for this program of course wouldn't be possible without Qt software particularly PyQt5, which all of the code in this package depends on. Please find them at https://www.qt.io/ and https://www.riverbankcomputing.com/software/pyqt/intro, respectively
+
 To Rosetta Code for their repository of Julia Set programs https://rosettacode.org/wiki/Julia_set#Python
+
 To Wikipedia for their list of Julia sets, detailed explanation, and generally giving me an education where school failed
 
 --MJF
