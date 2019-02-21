@@ -5,7 +5,6 @@ from itertools import permutations
 from PyQt4 import QtCore, QtGui, uic
 
 qtCreatorFile = "TheJuliaGenerator.ui" # Enter file here.
-
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
 
 class JuliaGenerator(QtGui.QMainWindow, Ui_MainWindow):
@@ -40,7 +39,7 @@ class JuliaGenerator(QtGui.QMainWindow, Ui_MainWindow):
 	
 	#saveTxt: Saves the text of the function as it would appear in a calculator or wolfram alpha to a txt file
 	def saveTxt(self):
-		fstring = self.getFunction()
+		fstring = self.getFunc()
 		try:
 			fileName = QtGui.QFileDialog.getSaveFileName(self, "Save Function","",".txt")
 			save = open(fileName, "w+")
@@ -48,26 +47,13 @@ class JuliaGenerator(QtGui.QMainWindow, Ui_MainWindow):
 			save.close()
 		except: 
 			pass
+
+	####END BUTTON METHODS###
 	
-	#def changeColor(self):
-		#color = QtGui.QColorDialog.getColor()
-		#self.hue.setValue(color.hue())
-		#self.sat.setValue(color.hslSaturation())
-		#self.light.setValue(color.lightness())
-		
 	###FUNCTION METHODS###
-	#updateFunc: updates the label displaying the function
-	def updateFunc(self):
-		fstring = self.getFunction()
-		self.lblTxt.setText(fstring)
-		
-	#getFunction: returns the format for the function's text output
-	#example: f(z)=1*z^2+(0.285+0.01i)
-	def getFunction(self):
-		return ("f(z)="+self.sbQ.cleanText()+str(self.cbFunction.currentText())+"^"+self.sbN.cleanText() + \
-			"+("+self.sbRealC.cleanText()+"+"+self.sbImC.cleanText()+"i)")
-		
-	#chooseFunc: returns the current function the user combobox is set to. Special functions return codes for handling
+
+	#chooseFunc: returns the current function the user combobox is set to. 
+	#Special functions return codes for handling by julia in math methods
 	def chooseFunc(self):
 		f = self.cbFunction.currentIndex()
 		if(f==0):
@@ -94,11 +80,29 @@ class JuliaGenerator(QtGui.QMainWindow, Ui_MainWindow):
 			return cmath.cosh
 		elif(f==11):
 			return cmath.tanh
+
 		
+	#getFunc: returns the format for the function's text output
+	#example: f(z)=1*z^2+(0.285+0.01i)
+	def getFunc(self):
+		return ("f(z)="+self.sbQ.cleanText()+\
+			str(self.cbFunction.currentText())+"^"+self.sbN.cleanText() +\
+			"+("+self.sbRealC.cleanText()+"+"+self.sbImC.cleanText()+"i)")
 		
+	#updateFunc: updates the label displaying the function
+	def updateFunc(self):
+		fstring = self.getFunc()
+		self.lblTxt.setText(fstring)
 		
-	###HELPER METHODS
-	#returns an image (QImage) made from a NxM grid with each point iterated through the generator function. N: the horizontal pixel width. M: the vetical pixel width. Progress tracked by self.progressBar
+	###END FUNCTION METHODS###	
+		
+	###MATH METHODS###
+	#returns an image (QImage) made from a NxM grid 
+	#with each point iterated through the generator function. 
+	#N	the horizontal pixel width. 
+	#M	the vertical pixel width. 
+
+	#The progress of this method is tracked by self.progressBar
 	def julia_grid(self,N,M):
 		r = self.sbRange.value()
 		horiz = -self.sbHoriz.value()
@@ -111,7 +115,7 @@ class JuliaGenerator(QtGui.QMainWindow, Ui_MainWindow):
 		image = QtGui.QImage(N-1, N-1, QtGui.QImage.Format_RGB32) 
 		re = self.sbRealC.value()
 		im = self.sbImC.value()
-		c = re+im*1j  #seed 0.285+0.01i   -0.4+0.6i
+		c = re+im*1j  #complex seed, example 0.285+0.01i   -0.4+0.6i
 		for ix in range(0, N-1):
 			QtGui.QApplication.processEvents()
 			self.progressBar.setValue(round(float(ix)/float(N)*100))
@@ -121,16 +125,21 @@ class JuliaGenerator(QtGui.QMainWindow, Ui_MainWindow):
 				inz = inx + iny*1j
 				out = int(self.julia(inz, c, 360,self.getExponent()))
 				mults=self.getColorScheme()
-				pix = QtGui.QColor(out % mults[0][0]*mults[0][1], out% mults[1][0]*mults[1][1] , out% mults[2][0]*mults[2][1])				
+				pix = QtGui.QColor(out % mults[0][0]*mults[0][1],\
+					out% mults[1][0]*mults[1][1] ,\
+					out% mults[2][0]*mults[2][1])				
 				
-				#off = self.hue.value()
-				#print out+off
-				#pix = QtGui.QColor.fromHsl((out+off)%345, self.sat.value(), self.light.value())
 				image.setPixel(ix, iy, pix.rgb())
 				
 		return image
 		
-	#julia: the iterator function. Takes a point f, a complex seed c, exponent ex, and maximum maxi such that each successive value of f is func(f)^ex + c where func is the function the user chose until f diverges (is greater than maxi). returns ic, the number of times the function can act on itself without going towards infinity
+	#julia: the generator function for the julia set 
+	#Takes a point f, a complex seed c, exponent ex, and maximum maxi 
+	#such that each successive value of f is func(f)^ex + c 
+	#where func is the function the user chose until f diverges (i.e. f >>> maxi). 
+	#returns ic, the number of times the function can act on itself without 
+	#going towards infinity
+	#see https://rosettacode.org/wiki/Julia_set#Python
 	def julia(self,f, c, maxi, ex):
 		ic = 0
 		func = self.chooseFunc()
@@ -149,26 +158,40 @@ class JuliaGenerator(QtGui.QMainWindow, Ui_MainWindow):
 				f = pow(func(f),ex) + c
 			ic+=1
 		return ic
-		
+
+	#getExponent: returns the exponent chosen by the user (i.e. the value in the textbox)
+	def getExponent(self):
+		return self.sbN.value()
+
+	###END MATH METHODS###
+
+
+	###IMAGE METHODS###
+
 	#getColorScheme: returns the multipliers to create an RGB color scheme
 	def getColorScheme(self):
 		pairs = [(8,32), (32,8), (16,16), (4,64),(64,4)]
 		p=list(permutations(pairs,3))
 		p.append(((16,16),(16,16),(16,16)))
 		return p[self.cbColor.currentIndex()]
+
 	#display_image: displays a Qimage img on label view	
 	def display_image(self, img):
 		pmap = QtGui.QPixmap.fromImage(img)
 		self.view.setPixmap(pmap)
 		
-	#getExponent: returns the exponent chosen by the user
-	def getExponent(self):
-		return self.sbN.value()
 	
+	#adds the number of schemes (61 total themes) to the dropdown menu cbColor
 	def populateColors(self):
 		for i in range(61):
 			self.cbColor.addItem("Scheme %d" % (i+1) )
+	
+	###END IMAGE METHODS###
+
 	####STARTUP####	
+	#Typical function to set up the interface
+	#basically just edited this: 
+	#http://pythonforengineers.com/your-first-gui-app-with-python-and-pyqt/
 		
 	def __init__(self):
 		QtGui.QMainWindow.__init__(self)
@@ -178,14 +201,14 @@ class JuliaGenerator(QtGui.QMainWindow, Ui_MainWindow):
 		self.btnGenSet.clicked.connect(self.generate)
 		self.btnSaveImage.clicked.connect(self.saveImage)
 		self.btnSaveTxt.clicked.connect(self.saveTxt)
-		#self.btnColor.clicked.connect(self.changeColor)
 		
 
-
+#Typical main function, see above link
 if __name__ == "__main__":
 	app = QtGui.QApplication(sys.argv)
 	window = JuliaGenerator()
 	window.show()
+	#The timer is used for making the labels change when you change the text
 	timer = QtCore.QTimer()  # set up your QTimer
 	timer.timeout.connect(window.updateFunc)  # connect it to your update function
 	timer.start(10)  # set it to timeout in ms
