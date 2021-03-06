@@ -41,7 +41,9 @@ II. Bug Reports and Contact
 
 Before anything, if you have any problems make sure that the program the ui file, and other files are in the same folder as you downloaded them!
 
-This software was created using PyQt4 and Qt4 Designer with the python module numpy. This project is open-source and available at https://github.com/mjfernez/julia_gen under a GNU GPL License. Please direct comments and complaints here. Currently I am working to write a full introduction to fractals using this tool, but I need to make sure the details are right and I credit everyone correctly so bear with me! I am also considering adding functionality for more complex polynomials like (z^2+z-1) or (1-z^3)/(1-z^4), though the formatting will require me to redraft this program. I may release a separate tool for this since this program is really aimed for people without a knowledge of fractals, but if you have any clever ideas contact me.
+This software was created using PyQt4 and Qt4 Designer with the python module numpy. This project is open-source and available at https://github.com/mjfernez/julia_gen under a GNU GPL License. Please direct comments and complaints here. If you don't know how to code, but love math, I could use help writing a better
+manual on the subject. I am also considering adding functionality for more complex polynomials like (z^2+z-1) or (1-z^3)/(1-z^4), though the formatting will
+require me to rework the UI
 
 III. Special Thanks
 
