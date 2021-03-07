@@ -2,7 +2,7 @@ import sys
 import numpy as np
 import math, cmath
 from itertools import permutations
-from PyQt4 import QtCore, QtGui, uic
+from PyQt5 import QtCore, QtGui, uic
 
 qtCreatorFile = "TheJuliaGenerator.ui" # Enter file here.
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)

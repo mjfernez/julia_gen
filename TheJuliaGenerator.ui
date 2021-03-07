@@ -59,7 +59,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>A tool create and learn about fractals through Julia Sets</string>
+    <string>A tool to create and learn about fractals through Julia Sets</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_5">
@@ -586,38 +586,55 @@
     <number>0</number>
    </property>
   </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget_8">
+  <widget class="QLabel" name="label_12">
+   <property name="geometry">
+    <rect>
+     <x>830</x>
+     <y>330</y>
+     <width>151</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Image Settings:</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
      <x>830</x>
      <y>360</y>
-     <width>211</width>
-     <height>41</height>
+     <width>231</width>
+     <height>95</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_11">
+      <property name="text">
+       <string>Shift Left/Right</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
      <widget class="QLabel" name="label_10">
       <property name="text">
        <string>Range (Zoom)</string>
       </property>
      </widget>
     </item>
-    <item>
-     <spacer name="horizontalSpacer_4">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_13">
+      <property name="text">
+       <string>Shift Up/Down</string>
       </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
+     </widget>
     </item>
-    <item>
+    <item row="0" column="2">
      <widget class="QDoubleSpinBox" name="sbRange">
+      <property name="decimals">
+       <number>5</number>
+      </property>
       <property name="minimum">
        <double>-2.000000000000000</double>
       </property>
@@ -632,40 +649,11 @@
       </property>
      </widget>
     </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget_9">
-   <property name="geometry">
-    <rect>
-     <x>830</x>
-     <y>410</y>
-     <width>211</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_9">
-    <item>
-     <widget class="QLabel" name="label_11">
-      <property name="text">
-       <string>Shift Left/Right</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <spacer name="horizontalSpacer_5">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item>
+    <item row="1" column="2">
      <widget class="QDoubleSpinBox" name="sbHoriz">
+      <property name="decimals">
+       <number>5</number>
+      </property>
       <property name="minimum">
        <double>-2.000000000000000</double>
       </property>
@@ -680,90 +668,62 @@
       </property>
      </widget>
     </item>
+    <item row="2" column="2">
+     <widget class="QDoubleSpinBox" name="sbVert">
+      <property name="decimals">
+       <number>5</number>
+      </property>
+      <property name="minimum">
+       <double>-2.000000000000000</double>
+      </property>
+      <property name="maximum">
+       <double>2.000000000000000</double>
+      </property>
+      <property name="singleStep">
+       <double>0.010000000000000</double>
+      </property>
+      <property name="value">
+       <double>0.000000000000000</double>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <spacer name="horizontalSpacer_4">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
    </layout>
   </widget>
-  <widget class="QLabel" name="label_12">
+  <widget class="QComboBox" name="cbColor">
+   <property name="geometry">
+    <rect>
+     <x>940</x>
+     <y>480</y>
+     <width>158</width>
+     <height>27</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
    <property name="geometry">
     <rect>
      <x>830</x>
-     <y>330</y>
-     <width>151</width>
-     <height>17</height>
+     <y>480</y>
+     <width>101</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>Image Settings:</string>
+    <string>Color Scheme:</string>
    </property>
-  </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget_10">
-   <property name="geometry">
-    <rect>
-     <x>830</x>
-     <y>460</y>
-     <width>211</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_10">
-    <item>
-     <widget class="QLabel" name="label_13">
-      <property name="text">
-       <string>Shift Up/Down</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <spacer name="horizontalSpacer_6">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item>
-     <widget class="QDoubleSpinBox" name="sbVert">
-      <property name="minimum">
-       <double>-2.000000000000000</double>
-      </property>
-      <property name="maximum">
-       <double>2.000000000000000</double>
-      </property>
-      <property name="singleStep">
-       <double>0.010000000000000</double>
-      </property>
-      <property name="value">
-       <double>0.000000000000000</double>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="verticalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>890</x>
-     <y>100</y>
-     <width>160</width>
-     <height>80</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QLabel" name="label_7">
-      <property name="text">
-       <string>Color Scheme:</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QComboBox" name="cbColor"/>
-    </item>
-   </layout>
   </widget>
  </widget>
  <resources/>

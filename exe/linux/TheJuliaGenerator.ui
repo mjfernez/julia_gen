@@ -59,7 +59,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>A tool create and learn about fractals through Julia Sets</string>
+    <string>A tool to create and learn about fractals through Julia Sets</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_5">
